@@ -2,10 +2,9 @@ import { motion } from "framer-motion";
 import { Briefcase, Users, Clock, Star } from "lucide-react";
 
 const stats = [
-  { icon: Briefcase, value: "120+", label: "Projetos entregues" },
-  { icon: Users, value: "85", label: "Clientes ativos" },
-  { icon: Clock, value: "6 anos", label: "De experiência" },
-  { icon: Star, value: "4.9", label: "Avaliação média" },
+  { icon: Briefcase, value: "30+", label: "Projetos realizados" },
+  { icon: Clock, value: "14 anos", label: "De experiência" },
+  { icon: Star, value: "5", label: "Setores atendidos" },
 ];
 
 const NumbersSection = () => {
@@ -31,7 +30,7 @@ const NumbersSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Monitor, Smartphone, BarChart3, ShoppingCart, Building2, Stethoscope } from "lucide-react";
+import { Monitor, Smartphone, BarChart3, ShoppingCart, Building2, Stethoscope, GraduationCap, Truck, Wheat, Store, Scale, Home, UserCheck, Shield } from "lucide-react";
 
 const showcaseItems = [
   {
@@ -27,6 +27,14 @@ const segments = [
   { icon: Building2, label: "Indústria" },
   { icon: Stethoscope, label: "Saúde" },
   { icon: BarChart3, label: "Finanças" },
+  { icon: GraduationCap, label: "Educação" },
+  { icon: Truck, label: "Logística" },
+  { icon: Wheat, label: "Agronegócio" },
+  { icon: Store, label: "Varejo" },
+  { icon: Scale, label: "Jurídico" },
+  { icon: Home, label: "Imobiliário" },
+  { icon: UserCheck, label: "Recursos Humanos" },
+  { icon: Shield, label: "Seguros" },
 ];
 
 const ShowcaseSection = () => {
@@ -67,7 +75,7 @@ const ShowcaseSection = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                 <div className="absolute bottom-4 left-4 w-10 h-10 rounded-lg bg-accent/90 flex items-center justify-center">
                   <item.icon className="w-5 h-5 text-accent-foreground" />
                 </div>
