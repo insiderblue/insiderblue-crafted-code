@@ -32,7 +32,7 @@ const GridCanvas = () => {
     window.addEventListener("resize", resize);
 
     // Create random glow points that drift
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 12; i++) {
       glows.push({
         x: Math.random() * canvas.offsetWidth,
         y: Math.random() * canvas.offsetHeight,
@@ -49,7 +49,7 @@ const GridCanvas = () => {
       ctx.clearRect(0, 0, w, h);
 
       // Draw base grid
-      ctx.strokeStyle = "hsla(210, 80%, 55%, 0.04)";
+      ctx.strokeStyle = "hsla(210, 80%, 55%, 0.1)";
       ctx.lineWidth = 0.5;
 
       for (let x = 0; x <= w; x += cellSize) {
@@ -71,7 +71,7 @@ const GridCanvas = () => {
         const cx = glow.x + Math.sin(t * glow.speed + glow.phase) * 120;
         const cy = glow.y + Math.cos(t * glow.speed * 0.7 + glow.phase) * 80;
         const pulse = 0.5 + 0.5 * Math.sin(t * 1.2 + glow.phase);
-        const radius = 120 + pulse * 60;
+        const radius = 160 + pulse * 80;
 
         // Illuminate grid cells near this glow
         const startCol = Math.max(0, Math.floor((cx - radius) / cellSize));
@@ -89,7 +89,7 @@ const GridCanvas = () => {
             const dist = Math.sqrt((cellCenterX - cx) ** 2 + (cellCenterY - cy) ** 2);
             if (dist > radius) continue;
 
-            const alpha = (1 - dist / radius) * glow.intensity * pulse * 0.12;
+            const alpha = (1 - dist / radius) * glow.intensity * pulse * 0.35;
             ctx.fillStyle = `hsla(210, 80%, 55%, ${alpha})`;
             ctx.fillRect(cellX + 1, cellY + 1, cellSize - 2, cellSize - 2);
           }
