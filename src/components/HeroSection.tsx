@@ -49,7 +49,7 @@ const GridCanvas = () => {
       ctx.clearRect(0, 0, w, h);
 
       // Draw base grid
-      ctx.strokeStyle = "hsla(210, 80%, 55%, 0.06)";
+      ctx.strokeStyle = "hsla(210, 80%, 75%, 0.08)";
       ctx.lineWidth = 0.5;
 
       for (let x = 0; x <= w; x += cellSize) {
