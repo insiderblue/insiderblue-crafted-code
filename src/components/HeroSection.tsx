@@ -10,7 +10,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-navy-deep">
-      <div className="absolute inset-0 opacity-[0.04]" style={{
+      <div className="absolute inset-[-32px] opacity-[0.04] animate-grid-drift" style={{
         backgroundImage: `linear-gradient(hsl(210 80% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(210 80% 55%) 1px, transparent 1px)`,
         backgroundSize: '32px 32px'
       }} />
@@ -18,9 +18,24 @@ const HeroSection = () => {
         backgroundImage: `linear-gradient(hsl(210 80% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(210 80% 55%) 1px, transparent 1px)`,
         backgroundSize: '160px 160px'
       }} />
-      <div className="absolute top-[15%] right-[20%] w-[600px] h-[600px] rounded-full blur-[160px]" style={{ background: 'radial-gradient(circle, hsl(210 80% 55% / 0.08), transparent 70%)' }} />
-      <div className="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] rounded-full blur-[140px]" style={{ background: 'radial-gradient(circle, hsl(210 60% 45% / 0.06), transparent 70%)' }} />
-      <div className="absolute top-[60%] right-[10%] w-[300px] h-[300px] rounded-full blur-[120px]" style={{ background: 'radial-gradient(circle, hsl(200 70% 60% / 0.04), transparent 70%)' }} />
+      <motion.div
+        className="absolute top-[15%] right-[20%] w-[600px] h-[600px] rounded-full blur-[160px]"
+        style={{ background: 'radial-gradient(circle, hsl(210 80% 55% / 0.08), transparent 70%)' }}
+        animate={{ x: [0, 30, -20, 0], y: [0, -25, 15, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] rounded-full blur-[140px]"
+        style={{ background: 'radial-gradient(circle, hsl(210 60% 45% / 0.06), transparent 70%)' }}
+        animate={{ x: [0, -20, 25, 0], y: [0, 20, -15, 0] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute top-[60%] right-[10%] w-[300px] h-[300px] rounded-full blur-[120px]"
+        style={{ background: 'radial-gradient(circle, hsl(200 70% 60% / 0.04), transparent 70%)' }}
+        animate={{ x: [0, 15, -10, 0], y: [0, -20, 10, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: `repeating-linear-gradient(135deg, hsl(210 80% 55%) 0px, hsl(210 80% 55%) 1px, transparent 1px, transparent 80px)`,
       }} />
