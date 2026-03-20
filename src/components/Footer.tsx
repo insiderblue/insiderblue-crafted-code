@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer className="bg-navy-deep border-t border-primary-foreground/5">
       <div className="container py-16">
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
             <Logo className="mb-4" />
@@ -27,7 +27,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 ["Nosso método", "#metodo"],
-                ["Diferenciais", "#diferenciais"],
+                ["Soluções", "#solucoes"],
+                ["FAQ", "#faq"],
                 ["Contato", "#contato"],
               ].map(([label, href]) => (
                 <li key={href}>
@@ -37,6 +38,20 @@ const Footer = () => {
                   >
                     {label}
                   </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-xs font-semibold tracking-widest uppercase text-primary-foreground/50 mb-4">
+              Soluções
+            </h4>
+            <ul className="space-y-3">
+              {["Plataformas Web", "Aplicativos Mobile", "Dashboards e BI", "Integrações e APIs"].map((item) => (
+                <li key={item}>
+                  <span className="text-sm text-primary-foreground/50">{item}</span>
                 </li>
               ))}
             </ul>
@@ -56,6 +71,9 @@ const Footer = () => {
               <WhatsAppIcon className="w-4 h-4" />
               WhatsApp
             </a>
+            <p className="text-sm text-primary-foreground/40 mt-4 leading-relaxed">
+              contato@insiderblue.com.br
+            </p>
           </div>
         </div>
       </div>
