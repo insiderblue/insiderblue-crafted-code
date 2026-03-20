@@ -10,12 +10,37 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-navy-deep">
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      {/* Layered grid — fine + coarse for depth */}
+      <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: `linear-gradient(hsl(210 80% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(210 80% 55%) 1px, transparent 1px)`,
-        backgroundSize: '60px 60px'
+        backgroundSize: '32px 32px'
       }} />
-      
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[120px]" />
+      <div className="absolute inset-0 opacity-[0.025]" style={{
+        backgroundImage: `linear-gradient(hsl(210 80% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(210 80% 55%) 1px, transparent 1px)`,
+        backgroundSize: '160px 160px'
+      }} />
+
+      {/* Ambient glow — primary */}
+      <div className="absolute top-[15%] right-[20%] w-[600px] h-[600px] rounded-full blur-[160px]" style={{ background: 'radial-gradient(circle, hsl(210 80% 55% / 0.08), transparent 70%)' }} />
+      {/* Secondary glow — bottom left for depth */}
+      <div className="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] rounded-full blur-[140px]" style={{ background: 'radial-gradient(circle, hsl(210 60% 45% / 0.06), transparent 70%)' }} />
+      {/* Warm accent — very subtle, breaks monotone */}
+      <div className="absolute top-[60%] right-[10%] w-[300px] h-[300px] rounded-full blur-[120px]" style={{ background: 'radial-gradient(circle, hsl(200 70% 60% / 0.04), transparent 70%)' }} />
+
+      {/* Diagonal line texture */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: `repeating-linear-gradient(135deg, hsl(210 80% 55%) 0px, hsl(210 80% 55%) 1px, transparent 1px, transparent 80px)`,
+      }} />
+
+      {/* Top vignette */}
+      <div className="absolute inset-0" style={{
+        background: 'linear-gradient(180deg, hsl(215 65% 8% / 0.6) 0%, transparent 40%, transparent 80%, hsl(215 65% 8% / 0.4) 100%)',
+      }} />
+
+      {/* Noise texture overlay */}
+      <div className="absolute inset-0 opacity-[0.35]" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
+      }} />
 
       <div className="container relative z-10 py-24 md:py-32">
         <div className="max-w-3xl">
