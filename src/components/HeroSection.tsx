@@ -10,7 +10,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-navy-deep">
-      <div className="absolute inset-0 opacity-[0.04]" style={{
+      <div className="absolute inset-[-32px] opacity-[0.04] animate-grid-drift" style={{
         backgroundImage: `linear-gradient(hsl(210 80% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(210 80% 55%) 1px, transparent 1px)`,
         backgroundSize: '32px 32px'
       }} />
