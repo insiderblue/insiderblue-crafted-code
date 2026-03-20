@@ -10,7 +10,7 @@ const items = [
 
 const DifferentialsSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section id="diferenciais" className="py-24 md:py-32 bg-background">
       <div className="container">
         <motion.div
           className="text-center mb-16"

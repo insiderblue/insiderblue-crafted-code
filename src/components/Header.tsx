@@ -13,8 +13,8 @@ const Header = () => {
 
         <nav className="hidden md:flex items-center gap-8">
           {[
-            ["Serviços", "#servicos"],
-            ["Processo", "#processo"],
+            ["Método", "#metodo"],
+            ["Diferenciais", "#diferenciais"],
             ["Contato", "#contato"],
           ].map(([label, href]) => (
             <a
@@ -26,7 +26,9 @@ const Header = () => {
             </a>
           ))}
           <a
-            href="#contato"
+            href="https://wa.me/5535984365367"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-5 py-2 text-sm font-medium rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors"
           >
             Fale conosco
@@ -45,8 +47,8 @@ const Header = () => {
         <div className="md:hidden bg-navy-deep border-t border-primary-foreground/5 py-4">
           <div className="container flex flex-col gap-4">
             {[
-              ["Serviços", "#servicos"],
-              ["Processo", "#processo"],
+              ["Método", "#metodo"],
+              ["Diferenciais", "#diferenciais"],
               ["Contato", "#contato"],
             ].map(([label, href]) => (
               <a
