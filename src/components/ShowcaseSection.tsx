@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Monitor, Smartphone, BarChart3, ShoppingCart, Building2, Stethoscope } from "lucide-react";
+import { Monitor, Smartphone, BarChart3, ShoppingCart, Building2, Stethoscope, GraduationCap, Truck, Wheat, Store, Scale, Home, UserCheck, Shield } from "lucide-react";
 
 const showcaseItems = [
   {
