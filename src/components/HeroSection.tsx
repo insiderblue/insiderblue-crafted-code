@@ -71,7 +71,7 @@ const GridCanvas = () => {
         const cx = glow.x + Math.sin(t * glow.speed + glow.phase) * 120;
         const cy = glow.y + Math.cos(t * glow.speed * 0.7 + glow.phase) * 80;
         const pulse = 0.5 + 0.5 * Math.sin(t * 1.2 + glow.phase);
-        const radius = 120 + pulse * 60;
+        const radius = 160 + pulse * 80;
 
         // Illuminate grid cells near this glow
         const startCol = Math.max(0, Math.floor((cx - radius) / cellSize));
