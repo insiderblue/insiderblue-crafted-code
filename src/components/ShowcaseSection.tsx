@@ -27,6 +27,14 @@ const segments = [
   { icon: Building2, label: "Indústria" },
   { icon: Stethoscope, label: "Saúde" },
   { icon: BarChart3, label: "Finanças" },
+  { icon: Monitor, label: "Educação" },
+  { icon: Monitor, label: "Logística" },
+  { icon: Monitor, label: "Agronegócio" },
+  { icon: Monitor, label: "Varejo" },
+  { icon: Monitor, label: "Jurídico" },
+  { icon: Monitor, label: "Imobiliário" },
+  { icon: Monitor, label: "Recursos Humanos" },
+  { icon: Monitor, label: "Seguros" },
 ];
 
 const ShowcaseSection = () => {
