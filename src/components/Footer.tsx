@@ -1,4 +1,5 @@
 import Logo from "./Logo";
+import { Mail } from "lucide-react";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -62,18 +63,24 @@ const Footer = () => {
             <h4 className="text-xs font-semibold tracking-widest uppercase text-primary-foreground/50 mb-4">
               Fale conosco
             </h4>
-            <a
-              href="https://wa.me/5535984365367"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-primary-foreground/50 hover:text-primary-foreground transition-colors"
-            >
-              <WhatsAppIcon className="w-4 h-4" />
-              WhatsApp
-            </a>
-            <p className="text-sm text-primary-foreground/40 mt-4 leading-relaxed">
-              contato@insiderblue.com.br
-            </p>
+            <div className="space-y-3">
+              <a
+                href="https://wa.me/5535984365367"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-primary-foreground/50 hover:text-primary-foreground transition-colors"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                WhatsApp
+              </a>
+              <a
+                href="mailto:contato@insiderblue.com.br"
+                className="flex items-center gap-2 text-sm text-primary-foreground/50 hover:text-primary-foreground transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                contato@insiderblue.com.br
+              </a>
+            </div>
           </div>
         </div>
       </div>

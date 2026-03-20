@@ -4,7 +4,7 @@ interface LogoProps {
 }
 
 const Logo = ({ className = "", variant = "light" }: LogoProps) => {
-  const textColor = variant === "light" ? "text-primary-foreground" : "text-foreground";
+  const textColor = variant === "light" ? "text-primary-foreground" : "text-accent";
   const iconBg = variant === "light" ? "bg-accent/10 border-accent/20 group-hover:border-accent/40" : "bg-accent/10 border-accent/20 group-hover:border-accent/30";
 
   return (
@@ -16,7 +16,6 @@ const Logo = ({ className = "", variant = "light" }: LogoProps) => {
           className="w-[18px] h-[18px]"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Code brackets < /> stylized */}
           <path
             d="M12 8L5 16l7 8"
             className="stroke-accent"
