@@ -89,7 +89,7 @@ const GridCanvas = () => {
             const dist = Math.sqrt((cellCenterX - cx) ** 2 + (cellCenterY - cy) ** 2);
             if (dist > radius) continue;
 
-            const alpha = (1 - dist / radius) * glow.intensity * pulse * 0.35;
+            const alpha = (1 - dist / radius) * glow.intensity * pulse * 0.2;
             ctx.fillStyle = `hsla(210, 80%, 55%, ${alpha})`;
             ctx.fillRect(cellX + 1, cellY + 1, cellSize - 2, cellSize - 2);
           }
