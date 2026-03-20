@@ -32,7 +32,7 @@ const GridCanvas = () => {
     window.addEventListener("resize", resize);
 
     // Create random glow points that drift
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 8; i++) {
       glows.push({
         x: Math.random() * canvas.offsetWidth,
         y: Math.random() * canvas.offsetHeight,
