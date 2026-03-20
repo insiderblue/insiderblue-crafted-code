@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Logo from "./Logo";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -7,9 +8,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy-deep/80 backdrop-blur-lg border-b border-primary-foreground/5">
       <div className="container flex items-center justify-between h-16">
-        <a href="#" className="text-lg font-bold text-primary-foreground tracking-tight">
-          insider<span className="text-accent">blue</span>
-        </a>
+        <Logo />
 
         <nav className="hidden md:flex items-center gap-8">
           {[
