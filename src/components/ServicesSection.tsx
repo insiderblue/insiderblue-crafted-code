@@ -12,7 +12,7 @@ const methodSteps = [
     icon: PenTool,
     number: "02",
     title: "Arquitetura sob medida",
-    description: "Desenhamos a solução técnica ideal para o seu cenário — escolhendo tecnologias, integrações e uma arquitetura que cresce junto com a sua empresa.",
+    description: "Desenhamos a solução técnica ideal para o seu cenário, escolhendo tecnologias, integrações e uma arquitetura que cresce junto com a sua empresa.",
   },
   {
     icon: Code2,
@@ -24,7 +24,7 @@ const methodSteps = [
     icon: Rocket,
     number: "04",
     title: "Entrega e evolução",
-    description: "Implantação assistida, treinamento da equipe e suporte técnico contínuo. Seu software não para no lançamento — ele evolui com o seu negócio.",
+    description: "Implantação assistida, treinamento da equipe e suporte técnico contínuo. Seu software não para no lançamento, ele evolui com o seu negócio.",
   },
 ];
 
@@ -46,7 +46,7 @@ const ServicesSection = () => {
             Como transformamos a sua ideia em software
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Um processo estruturado que garante qualidade, alinhamento e resultado — do primeiro dia à entrega final.
+            Um processo estruturado que garante qualidade, alinhamento e resultado do primeiro dia à entrega final.
           </p>
         </motion.div>
 
