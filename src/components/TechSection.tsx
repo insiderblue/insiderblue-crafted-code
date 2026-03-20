@@ -1,15 +1,37 @@
 import { motion } from "framer-motion";
-import { Database, Cloud, Lock, Zap, Globe, Cpu, Layers, GitBranch } from "lucide-react";
+import { ShieldCheck, Headphones, Rocket, RefreshCw, FileSearch, Settings } from "lucide-react";
 
-const technologies = [
-  { icon: Globe, label: "React & Next.js" },
-  { icon: Database, label: "PostgreSQL" },
-  { icon: Cloud, label: "AWS & Azure" },
-  { icon: Lock, label: "Auth & Security" },
-  { icon: Zap, label: "APIs REST & GraphQL" },
-  { icon: Cpu, label: "Microserviços" },
-  { icon: Layers, label: "Docker & K8s" },
-  { icon: GitBranch, label: "CI/CD" },
+const guarantees = [
+  {
+    icon: FileSearch,
+    title: "Diagnóstico gratuito",
+    description: "Analisamos sua operação e identificamos oportunidades de automação e ganho de eficiência antes de qualquer compromisso.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Garantia de qualidade",
+    description: "Todo projeto passa por testes rigorosos e validação em cada etapa para garantir estabilidade e segurança.",
+  },
+  {
+    icon: Headphones,
+    title: "Suporte contínuo",
+    description: "Após a entrega, sua empresa conta com suporte técnico dedicado para manter tudo funcionando perfeitamente.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Evolução constante",
+    description: "Seu software cresce junto com o seu negócio. Novas funcionalidades são adicionadas conforme sua operação exige.",
+  },
+  {
+    icon: Rocket,
+    title: "Entregas incrementais",
+    description: "Você acompanha e valida cada funcionalidade antes de avançar. Sem surpresas no final do projeto.",
+  },
+  {
+    icon: Settings,
+    title: "Integração total",
+    description: "Conectamos seu novo sistema aos softwares que você já usa, eliminando retrabalho e centralizando informações.",
+  },
 ];
 
 const TechSection = () => {
@@ -20,59 +42,40 @@ const TechSection = () => {
       }} />
 
       <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Image side */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="rounded-2xl overflow-hidden shadow-elevated">
-              <img
-                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=700&h=500&fit=crop&q=80"
-                alt="Código de programação em tela"
-                className="w-full h-[360px] object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-xl bg-accent/10 blur-[60px]" />
-          </motion.div>
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="text-xs font-medium tracking-widest uppercase text-accent mb-3 block">
+            Compromisso
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+            O que você pode esperar
+          </h2>
+          <p className="text-primary-foreground/50 max-w-xl mx-auto">
+            Mais do que código, entregamos tranquilidade. Cada etapa do projeto é pensada para proteger seu investimento e gerar resultado.
+          </p>
+        </motion.div>
 
-          {/* Content side */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-xs font-medium tracking-widest uppercase text-accent mb-3 block">
-              Tecnologias
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-              Stack moderna e escalável
-            </h2>
-            <p className="text-primary-foreground/50 mb-8 leading-relaxed">
-              Trabalhamos com as tecnologias mais confiáveis do mercado para garantir performance, segurança e facilidade de manutenção em todos os projetos.
-            </p>
-
-            <div className="grid grid-cols-2 gap-3">
-              {technologies.map((tech, i) => (
-                <motion.div
-                  key={tech.label}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-foreground/5 border border-primary-foreground/5 hover:border-accent/20 transition-colors"
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                >
-                  <tech.icon className="w-4 h-4 text-accent shrink-0" />
-                  <span className="text-sm text-primary-foreground/70">{tech.label}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {guarantees.map((item, i) => (
+            <motion.div
+              key={item.title}
+              className="p-6 rounded-xl bg-primary-foreground/5 border border-primary-foreground/5 hover:border-accent/20 transition-colors"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                <item.icon className="w-5 h-5 text-accent" />
+              </div>
+              <h3 className="font-semibold text-primary-foreground mb-2">{item.title}</h3>
+              <p className="text-sm text-primary-foreground/50 leading-relaxed">{item.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -27,14 +27,14 @@ const segments = [
   { icon: Building2, label: "Indústria" },
   { icon: Stethoscope, label: "Saúde" },
   { icon: BarChart3, label: "Finanças" },
-  { icon: Monitor, label: "Educação" },
-  { icon: Monitor, label: "Logística" },
-  { icon: Monitor, label: "Agronegócio" },
-  { icon: Monitor, label: "Varejo" },
-  { icon: Monitor, label: "Jurídico" },
-  { icon: Monitor, label: "Imobiliário" },
-  { icon: Monitor, label: "Recursos Humanos" },
-  { icon: Monitor, label: "Seguros" },
+  { icon: GraduationCap, label: "Educação" },
+  { icon: Truck, label: "Logística" },
+  { icon: Wheat, label: "Agronegócio" },
+  { icon: Store, label: "Varejo" },
+  { icon: Scale, label: "Jurídico" },
+  { icon: Home, label: "Imobiliário" },
+  { icon: UserCheck, label: "Recursos Humanos" },
+  { icon: Shield, label: "Seguros" },
 ];
 
 const ShowcaseSection = () => {
