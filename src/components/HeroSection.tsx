@@ -1,3 +1,6 @@
+import { useEffect, useMemo, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -8,42 +11,92 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const HeroSection = () => {
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => setInit(true));
+  }, []);
+
+  const particleOptions = useMemo(
+    () => ({
+      fullScreen: false,
+      fpsLimit: 60,
+      particles: {
+        number: {
+          value: 60,
+          density: { enable: true, width: 1920, height: 1080 },
+        },
+        color: { value: "#4a90d9" },
+        opacity: {
+          value: { min: 0.05, max: 0.2 },
+          animation: { enable: true, speed: 0.3, sync: false },
+        },
+        size: {
+          value: { min: 1, max: 3 },
+        },
+        move: {
+          enable: true,
+          speed: { min: 0.3, max: 0.8 },
+          direction: "none" as const,
+          outModes: { default: "out" as const },
+        },
+        links: {
+          enable: true,
+          distance: 150,
+          color: "#4a90d9",
+          opacity: 0.06,
+          width: 1,
+        },
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "grab" as const },
+        },
+        modes: {
+          grab: { distance: 140, links: { opacity: 0.12 } },
+        },
+      },
+      detectRetina: true,
+    }),
+    []
+  );
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-navy-deep">
-      <div className="absolute inset-[-32px] opacity-[0.04] animate-grid-drift" style={{
-        backgroundImage: `linear-gradient(hsl(210 80% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(210 80% 55%) 1px, transparent 1px)`,
-        backgroundSize: '32px 32px'
-      }} />
-      <div className="absolute inset-0 opacity-[0.025]" style={{
-        backgroundImage: `linear-gradient(hsl(210 80% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(210 80% 55%) 1px, transparent 1px)`,
-        backgroundSize: '160px 160px'
-      }} />
+      {/* Particle background */}
+      {init && (
+        <Particles
+          id="hero-particles"
+          className="absolute inset-0 z-[1]"
+          options={particleOptions}
+        />
+      )}
+
+      {/* Ambient light orbs */}
       <motion.div
-        className="absolute top-[15%] right-[20%] w-[600px] h-[600px] rounded-full blur-[160px]"
-        style={{ background: 'radial-gradient(circle, hsl(210 80% 55% / 0.08), transparent 70%)' }}
+        className="absolute top-[15%] right-[20%] w-[600px] h-[600px] rounded-full blur-[160px] z-[2]"
+        style={{ background: 'radial-gradient(circle, hsl(210 80% 55% / 0.1), transparent 70%)' }}
         animate={{ x: [0, 30, -20, 0], y: [0, -25, 15, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] rounded-full blur-[140px]"
-        style={{ background: 'radial-gradient(circle, hsl(210 60% 45% / 0.06), transparent 70%)' }}
+        className="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] rounded-full blur-[140px] z-[2]"
+        style={{ background: 'radial-gradient(circle, hsl(210 60% 45% / 0.08), transparent 70%)' }}
         animate={{ x: [0, -20, 25, 0], y: [0, 20, -15, 0] }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute top-[60%] right-[10%] w-[300px] h-[300px] rounded-full blur-[120px]"
-        style={{ background: 'radial-gradient(circle, hsl(200 70% 60% / 0.04), transparent 70%)' }}
+        className="absolute top-[60%] right-[10%] w-[300px] h-[300px] rounded-full blur-[120px] z-[2]"
+        style={{ background: 'radial-gradient(circle, hsl(200 70% 60% / 0.06), transparent 70%)' }}
         animate={{ x: [0, 15, -10, 0], y: [0, -20, 10, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `repeating-linear-gradient(135deg, hsl(210 80% 55%) 0px, hsl(210 80% 55%) 1px, transparent 1px, transparent 80px)`,
-      }} />
-      <div className="absolute inset-0" style={{
-        background: 'linear-gradient(180deg, hsl(215 65% 8% / 0.6) 0%, transparent 40%, transparent 80%, hsl(215 65% 8% / 0.4) 100%)',
-      }} />
-      <div className="absolute inset-0 opacity-[0.35]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
+
+      {/* Vignette */}
+      <div className="absolute inset-0 z-[3]" style={{
+        background: 'linear-gradient(180deg, hsl(215 65% 8% / 0.5) 0%, transparent 30%, transparent 85%, hsl(215 65% 8% / 0.4) 100%)',
       }} />
 
       <div className="container relative z-10 py-24 md:py-32">

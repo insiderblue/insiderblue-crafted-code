@@ -28,8 +28,9 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-muted">
-      <div className="container">
+    <section id="faq" className="py-24 md:py-32 bg-muted relative overflow-hidden">
+      <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[180px] opacity-20" style={{ background: 'radial-gradient(circle, hsl(210 80% 85%), transparent 70%)' }} />
+      <div className="container relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}

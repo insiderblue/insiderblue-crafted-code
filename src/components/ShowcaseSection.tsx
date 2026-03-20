@@ -39,8 +39,9 @@ const segments = [
 
 const ShowcaseSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-muted">
-      <div className="container">
+    <section className="py-24 md:py-32 bg-muted relative overflow-hidden">
+      <div className="absolute bottom-0 left-0 w-[600px] h-[400px] rounded-full blur-[200px] opacity-25" style={{ background: 'radial-gradient(circle, hsl(210 80% 88%), transparent 70%)' }} />
+      <div className="container relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}

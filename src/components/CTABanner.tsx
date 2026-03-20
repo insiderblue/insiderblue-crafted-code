@@ -15,9 +15,10 @@ const perks = [
 
 const CTABanner = () => {
   return (
-    <section className="py-20 md:py-28 bg-navy-deep relative overflow-hidden">
+    <section id="contato" className="py-20 md:py-28 bg-background relative overflow-hidden">
+      {/* Subtle gradient accent */}
       <div className="absolute inset-0" style={{
-        background: 'radial-gradient(ellipse 80% 60% at 50% 50%, hsl(210 80% 55% / 0.06), transparent)',
+        background: 'radial-gradient(ellipse 80% 60% at 50% 50%, hsl(210 80% 55% / 0.04), transparent)',
       }} />
 
       <div className="container relative z-10">
@@ -27,10 +28,10 @@ const CTABanner = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Pronto para transformar sua operação?
           </h2>
-          <p className="text-primary-foreground/50 mb-8 max-w-lg mx-auto">
+          <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
             Converse com um dos nossos especialistas e descubra como um software feito sob medida pode acelerar o seu negócio.
           </p>
 
@@ -47,7 +48,7 @@ const CTABanner = () => {
 
           <div className="flex flex-wrap justify-center gap-6">
             {perks.map((perk) => (
-              <div key={perk.text} className="flex items-center gap-2 text-sm text-primary-foreground/40">
+              <div key={perk.text} className="flex items-center gap-2 text-sm text-muted-foreground">
                 <perk.icon className="w-4 h-4 text-accent/60" />
                 {perk.text}
               </div>
