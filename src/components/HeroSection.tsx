@@ -1,6 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -10,69 +8,119 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const HeroSection = () => {
-  const [init, setInit] = useState(false);
+const GridCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => setInit(true));
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationId: number;
+    const cellSize = 40;
+    const glows: { x: number; y: number; intensity: number; speed: number; phase: number }[] = [];
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    // Create random glow points that drift
+    for (let i = 0; i < 8; i++) {
+      glows.push({
+        x: Math.random() * canvas.offsetWidth,
+        y: Math.random() * canvas.offsetHeight,
+        intensity: 0.3 + Math.random() * 0.5,
+        speed: 0.2 + Math.random() * 0.4,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+
+    const draw = (time: number) => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw base grid
+      ctx.strokeStyle = "hsla(210, 80%, 55%, 0.04)";
+      ctx.lineWidth = 0.5;
+
+      for (let x = 0; x <= w; x += cellSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= h; y += cellSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Animate glow points - they drift and pulse, illuminating nearby grid cells
+      glows.forEach((glow) => {
+        const t = time * 0.001;
+        const cx = glow.x + Math.sin(t * glow.speed + glow.phase) * 120;
+        const cy = glow.y + Math.cos(t * glow.speed * 0.7 + glow.phase) * 80;
+        const pulse = 0.5 + 0.5 * Math.sin(t * 1.2 + glow.phase);
+        const radius = 120 + pulse * 60;
+
+        // Illuminate grid cells near this glow
+        const startCol = Math.max(0, Math.floor((cx - radius) / cellSize));
+        const endCol = Math.ceil((cx + radius) / cellSize);
+        const startRow = Math.max(0, Math.floor((cy - radius) / cellSize));
+        const endRow = Math.ceil((cy + radius) / cellSize);
+
+        for (let col = startCol; col <= endCol; col++) {
+          for (let row = startRow; row <= endRow; row++) {
+            const cellX = col * cellSize;
+            const cellY = row * cellSize;
+            const cellCenterX = cellX + cellSize / 2;
+            const cellCenterY = cellY + cellSize / 2;
+
+            const dist = Math.sqrt((cellCenterX - cx) ** 2 + (cellCenterY - cy) ** 2);
+            if (dist > radius) continue;
+
+            const alpha = (1 - dist / radius) * glow.intensity * pulse * 0.12;
+            ctx.fillStyle = `hsla(210, 80%, 55%, ${alpha})`;
+            ctx.fillRect(cellX + 1, cellY + 1, cellSize - 2, cellSize - 2);
+          }
+        }
+      });
+
+      animationId = requestAnimationFrame(draw);
+    };
+
+    animationId = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", resize);
+    };
   }, []);
 
-  const particleOptions = useMemo(
-    () => ({
-      fullScreen: false,
-      fpsLimit: 60,
-      particles: {
-        number: {
-          value: 60,
-          density: { enable: true, width: 1920, height: 1080 },
-        },
-        color: { value: "#4a90d9" },
-        opacity: {
-          value: { min: 0.05, max: 0.2 },
-          animation: { enable: true, speed: 0.3, sync: false },
-        },
-        size: {
-          value: { min: 1, max: 3 },
-        },
-        move: {
-          enable: true,
-          speed: { min: 0.3, max: 0.8 },
-          direction: "none" as const,
-          outModes: { default: "out" as const },
-        },
-        links: {
-          enable: true,
-          distance: 150,
-          color: "#4a90d9",
-          opacity: 0.06,
-          width: 1,
-        },
-      },
-      interactivity: {
-        events: {
-          onHover: { enable: true, mode: "grab" as const },
-        },
-        modes: {
-          grab: { distance: 140, links: { opacity: 0.12 } },
-        },
-      },
-      detectRetina: true,
-    }),
-    []
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full"
+      style={{ pointerEvents: "none" }}
+    />
   );
+};
 
+const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-navy-deep">
-      {/* Particle background */}
-      {init && (
-        <Particles
-          id="hero-particles"
-          className="absolute inset-0 z-[1]"
-          options={particleOptions}
-        />
-      )}
+      {/* Animated grid with glowing cells */}
+      <GridCanvas />
 
       {/* Ambient light orbs */}
       <motion.div
@@ -87,16 +135,15 @@ const HeroSection = () => {
         animate={{ x: [0, -20, 25, 0], y: [0, 20, -15, 0] }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
-        className="absolute top-[60%] right-[10%] w-[300px] h-[300px] rounded-full blur-[120px] z-[2]"
-        style={{ background: 'radial-gradient(circle, hsl(200 70% 60% / 0.06), transparent 70%)' }}
-        animate={{ x: [0, 15, -10, 0], y: [0, -20, 10, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
 
       {/* Vignette */}
       <div className="absolute inset-0 z-[3]" style={{
         background: 'linear-gradient(180deg, hsl(215 65% 8% / 0.5) 0%, transparent 30%, transparent 85%, hsl(215 65% 8% / 0.4) 100%)',
+      }} />
+
+      {/* Noise texture */}
+      <div className="absolute inset-0 z-[3] opacity-[0.35]" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
       }} />
 
       <div className="container relative z-10 py-24 md:py-32">
