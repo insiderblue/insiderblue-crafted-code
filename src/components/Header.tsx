@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-navy-deep/80 backdrop-blur-lg border-b border-primary-foreground/5">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b transition-colors duration-300 ${
+        scrolled
+          ? "bg-background/90 border-border"
+          : "bg-navy-deep/80 border-primary-foreground/5"
+      }`}
+    >
       <div className="container flex items-center justify-between h-16">
-        <Logo />
+        <Logo variant={scrolled ? "dark" : "light"} />
 
         <nav className="hidden md:flex items-center gap-8">
           {[
@@ -19,7 +32,11 @@ const Header = () => {
             <a
               key={href}
               href={href}
-              className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+              className={`text-sm transition-colors ${
+                scrolled
+                  ? "text-foreground/60 hover:text-foreground"
+                  : "text-primary-foreground/60 hover:text-primary-foreground"
+              }`}
             >
               {label}
             </a>
@@ -35,7 +52,7 @@ const Header = () => {
         </nav>
 
         <button
-          className="md:hidden text-primary-foreground"
+          className={`md:hidden transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
           onClick={() => setOpen(!open)}
         >
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -43,7 +60,9 @@ const Header = () => {
       </div>
 
       {open && (
-        <div className="md:hidden bg-navy-deep border-t border-primary-foreground/5 py-4">
+        <div className={`md:hidden border-t py-4 ${
+          scrolled ? "bg-background border-border" : "bg-navy-deep border-primary-foreground/5"
+        }`}>
           <div className="container flex flex-col gap-4">
             {[
               ["Método", "#metodo"],
@@ -54,7 +73,9 @@ const Header = () => {
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="text-sm text-primary-foreground/70 hover:text-primary-foreground"
+                className={`text-sm ${
+                  scrolled ? "text-foreground/70 hover:text-foreground" : "text-primary-foreground/70 hover:text-primary-foreground"
+                }`}
               >
                 {label}
               </a>
