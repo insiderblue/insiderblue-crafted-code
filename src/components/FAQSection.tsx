@@ -24,10 +24,6 @@ const faqs = [
     question: "Posso acompanhar o desenvolvimento do meu projeto?",
     answer: "Sim. Trabalhamos com ciclos curtos de entrega e você recebe acesso a versões parciais do sistema para validar cada funcionalidade antes de avançar.",
   },
-  {
-    question: "Quais tecnologias vocês utilizam?",
-    answer: "Escolhemos a melhor stack para cada projeto. Trabalhamos com React, Next.js, Node.js, Python, PostgreSQL, AWS, Azure e outras tecnologias líderes de mercado.",
-  },
 ];
 
 const FAQSection = () => {

@@ -2,10 +2,9 @@ import { motion } from "framer-motion";
 import { Briefcase, Users, Clock, Star } from "lucide-react";
 
 const stats = [
-  { icon: Briefcase, value: "120+", label: "Projetos entregues" },
-  { icon: Users, value: "85", label: "Clientes ativos" },
-  { icon: Clock, value: "6 anos", label: "De experiência" },
-  { icon: Star, value: "4.9", label: "Avaliação média" },
+  { icon: Briefcase, value: "30+", label: "Projetos realizados" },
+  { icon: Clock, value: "14 anos", label: "De experiência" },
+  { icon: Star, value: "5", label: "Setores atendidos" },
 ];
 
 const NumbersSection = () => {
