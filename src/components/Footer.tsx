@@ -62,12 +62,9 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-primary-foreground/5">
-        <div className="container py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="container py-5 flex items-center justify-center">
           <p className="text-xs text-primary-foreground/30">
             © {new Date().getFullYear()} Insiderblue. Todos os direitos reservados.
-          </p>
-          <p className="text-xs text-primary-foreground/30">
-            Feito com dedicação no Brasil.
           </p>
         </div>
       </div>
